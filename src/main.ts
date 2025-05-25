@@ -27,7 +27,7 @@ const Colors: Record<string, Color> = {
 const state = {
     mousedown: false,
     activeColor: Colors.red,
-    brsushRadius: 8,
+    brsushRadius: 1,
     lastDrawnPixel: undefined as [number, number] | undefined,
 };
 
@@ -202,3 +202,18 @@ type Vector = {
 }
 
 const AXIS_DETECT_THRESHOLD = 1.1;
+
+document.getElementById('brush-size-picker')
+?.addEventListener('change', (ev) => {
+    const el = ev.target as HTMLInputElement;
+
+    const val = el.value;
+
+    state.brsushRadius = parseInt(val);
+
+    const label = document.getElementById('brush-size-picker-label');
+    if (label) {
+        label.innerText = `${val} px`;
+
+    }
+});

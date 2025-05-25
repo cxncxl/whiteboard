@@ -1,6 +1,7 @@
 :root {
     --color-black: #000000;
     --color-white: #ffffff;
+    --color-grey: #888888;
 }
 
 body {
@@ -14,4 +15,22 @@ canvas {
     border-radius: 5px;
     border: 1px solid var(--color-white);
     cursor: crosshair;
+}
+
+.tools {
+    position: absolute;
+    top: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1em;
+    border-radius: 5px;
+    border: 3px solid var(--color-white);
+    background: var(--color-grey);
+    opacity: .75;
+    width: 75vw;
+    color: var(--color-white);
+
+    display: flex;
+    gap: 2em;
+    align-items: center;
 }
