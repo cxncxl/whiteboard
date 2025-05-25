@@ -21,12 +21,15 @@ if (!ctx) {
 ctx.imageSmoothingEnabled = false;
 
 const Colors: Record<string, Color> = {
+    white: [255, 255, 255, 255],
     red: [255, 0, 0, 255],
+    green: [0, 255, 0, 255],
+    blue: [0, 0, 255, 255],
 }
 
 const state = {
     mousedown: false,
-    activeColor: Colors.red,
+    activeColor: Colors.white,
     brsushRadius: 1,
     lastDrawnPixel: undefined as [number, number] | undefined,
 };
@@ -217,3 +220,39 @@ document.getElementById('brush-size-picker')
 
     }
 });
+
+const colorsEl = document.getElementById('colors');
+const colorSelectors: HTMLElement[] = [];
+if (colorsEl) {
+    for (const color of Object.keys(Colors)) {
+        const colorEl = document.createElement('div');
+        colorEl.classList.add('color');
+        colorEl.addEventListener('click', () => {
+            for (const el of colorSelectors) {
+                el.classList.remove('active');
+                colorEl.classList.add('active');
+                state.activeColor = Colors[color];
+            }
+        });
+
+        colorSelectors.push(colorEl);
+        
+        colorsEl.appendChild(colorEl);
+        colorEl.style.setProperty('--color', colorToHex(Colors[color]));
+    }
+
+    colorSelectors[0].classList.add('active');
+}
+
+function colorToHex(col: Color): string {
+    let res = '#';
+    for (const el of col) {
+        let hex = el.toString(16);
+        if (hex.length == 1) hex = '0' + hex;
+
+        res += hex;
+    }
+
+    console.log('color', res);
+    return res;
+}

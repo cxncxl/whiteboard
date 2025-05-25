@@ -2,6 +2,7 @@
     --color-black: #000000;
     --color-white: #ffffff;
     --color-grey: #888888;
+    --color-active: #fff35f;
 }
 
 body {
@@ -33,4 +34,21 @@ canvas {
     display: flex;
     gap: 2em;
     align-items: center;
+}
+
+.tools > .tool {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+}
+
+.color {
+    width: 1em;
+    height: 1em;
+    border: 2px solid var(--color-white);
+    background: var(--color);
+}
+
+.color.active {
+    border-color: var(--color-active);
 }
